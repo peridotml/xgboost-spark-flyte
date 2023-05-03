@@ -3,10 +3,9 @@ from typing import Dict, List, NamedTuple, Optional
 
 import pandas as pd
 from dataclasses_json import dataclass_json
+from flytekit import StructuredDataset
 from pyspark.ml.pipeline import PipelineModel
 from pyspark.ml.tuning import ParamGridBuilder
-
-from flytekit import StructuredDataset, task, workflow
 
 
 @dataclass_json

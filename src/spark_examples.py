@@ -2,7 +2,13 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List
 
+import flytekit
 import pandas as pd
+import sklearn.datasets
+from flytekit import StructuredDataset, kwtypes, task, workflow
+from flytekitplugins.deck.renderer import MarkdownRenderer
+from flytekitplugins.papermill import NotebookTask
+from flytekitplugins.spark import Spark
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.param import Param
@@ -10,13 +16,6 @@ from pyspark.ml.pipeline import Pipeline
 from pyspark.ml.tuning import TrainValidationSplit, TrainValidationSplitModel
 from pyspark.sql import DataFrame
 from xgboost.spark import SparkXGBRegressor
-import sklearn.datasets
-
-import flytekit
-from flytekit import StructuredDataset, kwtypes, task, workflow
-from flytekitplugins.deck.renderer import MarkdownRenderer
-from flytekitplugins.papermill import NotebookTask
-from flytekitplugins.spark import Spark
 
 from .charts import plot_subgroup_performance
 from .types import Dataset, ParamGrid, TrainXGBoostSparkOutput
